@@ -1,3 +1,27 @@
 #selected-team-logo{
+    height: 200px;
+}
+#team-details{
+    height: 100%;
+    border-left: 1px grey solid;
+    padding-left: 20px;
+}
+#selected-team-head-coach-picture {
     width: 100%;
+}
+
+.info-row{
+    padding-top: 30px !important;
+    padding-left: 10px !important;
+}
+#welcome-to-team-header{
+    width: 100%;
+    padding-top: 20px;
+}
+#team-info-row{
+    border-bottom: 1px solid grey;
+}
+#selected-team-head-coach-picture{
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px grey;
 }

@@ -223,3 +223,8 @@ function getTeam(abbr){
     }
     return team;
 }
+
+function getTeamFullName(abbr){
+    var team = getTeam(abbr);
+    return team.city + " " + team.name;
+}
