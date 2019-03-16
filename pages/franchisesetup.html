@@ -25,8 +25,42 @@
         <h3>Head Coach:</h3>
         <h1 id="selected-team-head-coach-name">Matt Patricia</h1><hr>
         <p>Would you like to hire another head coach?</p>
-        <button type="button" class="btn btn-success">Yes</button>
-        <button type="button" class="btn btn-danger">No</button>
+        <button type="button" class="btn btn-success" id="hire-new-head-coach">Yes</button>
+        <button type="button" class="btn btn-danger" id="keep-head-coach">No</button>
+    </div>
+</div>
+<div id="new-head-coach-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Hire a New Head Coach</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row m-0 p-0">
+                    <h2>Available Head Coaches: </h2>
+                    <p>There are several available coaches on the market at the moment. Their information and schemes can be found below.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Desired Contract</th>
+                                <th>Interested in Team</th>
+                                <th>Offensive Scheme</th>
+                                <th>Defensive Scheme</th>
+                                <th>Wants Personnel Control</th>
+                                <th>Last Job</th>
+                            </tr>
+                        </thead>
+                        <tbody id="available-coach-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 <script

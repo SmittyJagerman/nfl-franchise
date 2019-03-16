@@ -45,3 +45,8 @@ function getTeamArg(){
     teamArg = teamArg.replace("team=", '');
     return teamArg;
 }
+
+$('#hire-new-head-coach').onclick(function(){
+    var isCurrentCoachPopular = Math.floor(Math.random() * 10) > 2;
+
+});
