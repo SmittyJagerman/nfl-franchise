@@ -1,5 +1,8 @@
+var coach = {name:""};
+var abbr;
+
 $(document).ready(function(){
-    var abbr = getTeamArg();
+    abbr = getTeamArg();
     $('#welcome-to-team-header').text("Welcome to the " + getTeamFullName(abbr));
     $('#selected-team-logo').attr("src", "../media/team-logos/" + abbr + ".png");
     $.ajax({
@@ -36,6 +39,9 @@ function getHeadCoachImage(teamWebsiteLink){
             var coachImageContainer = coachDoc.find('figure.d3-o-media-object__figure');
             var coachImageUrl = ((coachImageContainer[0].children[0]).children[3]).attributes["src"].value.toString().replace("/t_lazy", "");
             $('#selected-team-head-coach-picture').attr("src", coachImageUrl);
+            var coachName = coachDoc.find('.d3-o-media-object__title')[0].innerText.toString().replace('"', "");
+            $('#selected-team-head-coach-name').text(coachName);
+            coach.name = coachName;
         }
     });
 }
@@ -46,7 +52,34 @@ function getTeamArg(){
     return teamArg;
 }
 
-$('#hire-new-head-coach').onclick(function(){
-    var isCurrentCoachPopular = Math.floor(Math.random() * 10) > 2;
-
+$('#hire-new-head-coach').click(function(){
+    var isCurrentCoachPopular = Math.floor(Math.random() * 10) > 3;
+    if(!isCurrentCoachPopular){
+        $('#popular-coach-warning-modal').modal('show');
+    } else {
+        $('#confirm-coach-fired-modal').modal('show');
+        var mediaResponses = generateMediaResponse("coach-firing", 1, "tweets", abbr, coach);
+        createMediaResponse(mediaResponses, $('#coach-fired-media-reaction-container'));
+    }
 });
+
+$('#cancel-coach-firing-button').click(function(){
+    $('#popular-coach-warning-modal').modal('hide');
+});
+
+$('#fire-coach-anyways-button').click(function(){
+    $('#popular-coach-warning-modal').modal('hide');
+    $('#confirm-coach-fired-modal').modal('show');
+    var mediaTweets = generateMediaResponse("coach-firing", 0, "tweets", abbr, coach);
+    createMediaResponse(mediaTweets, $('#coach-fired-media-reaction-container'));
+});
+
+function createMediaResponse(mediaTweets, reactionContainer){
+    mediaTweets.forEach(function(thisTweet){
+        var tweet = $('<div class="media-tweet"><h4 class="tweet-name w-100"></h4><h6 class="tweet-handle w-100"></h6><p class="tweet-body w-100"></p></div>');
+        tweet.find('h4.tweet-name').text(thisTweet.from.name);
+        tweet.find('h6.tweet-handle').text(thisTweet.from.twitter);
+        tweet.find('p.tweet-body').text(thisTweet.response);
+        reactionContainer.append(tweet);
+    });
+}

@@ -1,5 +1,5 @@
 var teamAbbrs = ["ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CLE", "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAX", "KC", "LAC", "LA", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", "OAK", "PHI", "PIT", "SEA", "SF", "TB", "TEN", "WAS"];
-
+var nflInsiders = [{name : "Adam Schefter", twitter : "@AdamSchefter"}, {name : "Ian Rapoport", twitter : "@RapSheet"}, {name : "Jason La Canfora", twitter: "@JasonLaCanfora"}, {name : "Ryan Wilson", twitter : "@RyanWilsonCBS"}, {name : "Jeff Darlington", twitter:"@JeffDarlington"}, {name : "Mike Garafolo", twitter:"@MikeGarafolo"}, {name: "Joel Seidel", twitter: "@joelseidel35"}];
 function getTeam(abbr){
     var team;
     switch(abbr){

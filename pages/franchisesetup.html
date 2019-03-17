@@ -10,11 +10,15 @@
 </head>
 <body>
 <div class="row m-0 p-0" id="team-info-row">
-    <img id="selected-team-logo" src="">
-    <div class="container p-0 m-0">
-        <h1 class="w-100" id="welcome-to-team-header">Welcome to the Detroit Lions</h1><hr>
-        <p id="selected-team-founded" class="w-100">1930</p>
-        <p id="selected-team-stadium" class="w-100">Ford Field</p>
+    <div class="col-sm-2">
+        <img id="selected-team-logo" src="">
+    </div>
+    <div class="col-sm-10">
+        <div class="container p-0 m-0">
+            <h1 class="w-100" id="welcome-to-team-header">Welcome to the Detroit Lions</h1><hr>
+            <p id="selected-team-founded" class="w-100">1930</p>
+            <p id="selected-team-stadium" class="w-100">Ford Field</p>
+        </div>
     </div>
 </div>
 <div class="row m-0 p-0 info-row">
@@ -29,36 +33,34 @@
         <button type="button" class="btn btn-danger" id="keep-head-coach">No</button>
     </div>
 </div>
-<div id="new-head-coach-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<div id="confirm-coach-fired-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title">Media Coverage of the Coach Firing</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hire a New Head Coach</h4>
             </div>
-            <div class="modal-body">
-                <div class="row m-0 p-0">
-                    <h2>Available Head Coaches: </h2>
-                    <p>There are several available coaches on the market at the moment. Their information and schemes can be found below.</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Desired Contract</th>
-                                <th>Interested in Team</th>
-                                <th>Offensive Scheme</th>
-                                <th>Defensive Scheme</th>
-                                <th>Wants Personnel Control</th>
-                                <th>Last Job</th>
-                            </tr>
-                        </thead>
-                        <tbody id="available-coach-table-body">
-                        </tbody>
-                    </table>
-                </div>
+            <div class="container" id="coach-fired-media-reaction-container">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Dismiss</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popular-coach-warning-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Warning!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This coach is a fan favorite and firing him now could seriously hurt your relationship with the fans. <br><br>It might be the best look for you to come in here and make this change so fast. It is still up to you how you would like to proceed.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="cancel-coach-firing-button">Cancel Firing</button>
+                <button type="button" class="btn btn-danger" id="fire-coach-anyways-button">Fire Anyways</button>
             </div>
         </div>
     </div>
@@ -70,5 +72,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script src="../js/league.js"></script>
+<script src="../js/media.js"></script>
 <script src="../js/franchisesetup.js"></script>
 </body>
