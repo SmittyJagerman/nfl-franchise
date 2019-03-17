@@ -46,3 +46,12 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+#team-logo{
+    width: 100%;
+    padding: 20px;
+}
+
+#team-header {
+    border-bottom: 1px solid grey;
+}

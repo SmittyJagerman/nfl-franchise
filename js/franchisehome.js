@@ -1,9 +1,15 @@
 var abbr = "";
+var myRoster = [];
+var now = {time:"", year:0};
 $(document).ready(function(){
     $('#loaderModal').modal('show');
     abbr = getTeamArg();
-    //Do this one time okay?
-    getTheRosters();
+    //for when the rosters need to be updated
+    //getTheRosters();
+    getMyRoster();
+    getMyProgress();
+    setDisplay();
+    $('#loaderModal').modal('hide');
 });
 function getTeamArg(){
     var teamArg = window.location.search.replace("?", '');
@@ -53,4 +59,32 @@ function parseTheRosters(rosterDoc, team){
             console.log(data);
         }
     });
+}
+function getMyRoster(){
+    $.ajax({
+        type: "POST",
+        url: "../php/getRoster.php",
+        data: {"abbr" : abbr},
+        success: function(roster){
+            myRoster = roster;
+        }
+    });
+}
+function getMyProgress(){
+    $.ajax({
+        type: "POST",
+        url: "../php/getSeason.php",
+        success: function(season){
+            season = JSON.parse(season);
+            now.time = season.time;
+            now.year = season.year;
+            $('#league_time').text(now.time);
+            $('#league_year').text(now.year);
+        }
+    });
+}
+
+function setDisplay(){
+    $('#team-name').text(getTeamFullName(abbr));
+    $('#team-logo').attr("src", "../media/team-logos/" + abbr + ".png");
 }
