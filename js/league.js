@@ -1,5 +1,6 @@
 var teamAbbrs = ["ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CLE", "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAX", "KC", "LAC", "LA", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", "OAK", "PHI", "PIT", "SEA", "SF", "TB", "TEN", "WAS"];
 var nflInsiders = [{name : "Adam Schefter", twitter : "@AdamSchefter"}, {name : "Ian Rapoport", twitter : "@RapSheet"}, {name : "Jason La Canfora", twitter: "@JasonLaCanfora"}, {name : "Ryan Wilson", twitter : "@RyanWilsonCBS"}, {name : "Jeff Darlington", twitter:"@JeffDarlington"}, {name : "Mike Garafolo", twitter:"@MikeGarafolo"}, {name: "Joel Seidel", twitter: "@joelseidel35"}];
+var positionAbbr = ["DE", "DB", "QB", "OLB", "SS", "FB", "WR", "LS", "OT", "CB", "OG", "TE", "FS", "DT", "RB", "C", "LB", "K", "P", "MLB", "NT", "ILB", "OL", "SAF"];
 function getTeam(abbr){
     var team;
     switch(abbr){
@@ -227,4 +228,83 @@ function getTeam(abbr){
 function getTeamFullName(abbr){
     var team = getTeam(abbr);
     return team.city + " " + team.name;
+}
+
+function getPositionName(abbr){
+    var position = {unit : "", name : ""};
+    switch(abbr){
+        case "DE":
+            position = { unit : "defense", name : "Defensive End", abbr : "DE" };
+            break;
+        case "DB":
+            position = { unit : "defense", name : "Defensive Back", abbr : "DB" };
+            break;
+        case "QB":
+            position = { unit : "offense", name : "Quarterback", abbr : "QB" };
+            break;
+        case "OLB":
+            position = { unit : "defense", name : "Outside Linebacker", abbr : "OLB" };
+            break;
+        case "SS":
+            position = { unit : "defense", name : "Strong Safety", abbr : "SS" };
+            break;
+        case "FB":
+            position = { unit : "offense", name : "Fullback", abbr : "FB" };
+            break;
+        case "WR":
+            position = { unit : "offense", name : "Wide Receiver", abbr : "WR" };
+            break;
+        case "LS":
+            position = { unit : "special teams", name : "Long Snapper" };
+            break;
+        case "OT":
+            position = { unit : "offense", name : "Offensive Tackle" };
+            break;
+        case "CB":
+            position = { unit : "defense", name : "Cornerback" };
+            break;
+        case "OG":
+            position = { unit : "offense", name : "Offensive Guard" };
+            break;
+        case "TE":
+            position = { unit : "offense", name : "Tight End" };
+            break;
+        case "FS":
+            position = { unit : "defense", name : "Free Safety" };
+            break;
+        case "DT":
+            position = { unit : "defense", name : "Defensive Tackle" };
+            break;
+        case "RB":
+            position = { unit : "offense", name : "Running Back" };
+            break;
+        case "C":
+            position = { unit : "offense", name : "Center" };
+            break;
+        case "LB":
+            position = { unit : "defense", name : "Linebacker" };
+            break;
+        case "K":
+            position = { unit : "special teams", name : "Kicker" };
+            break;
+        case "P":
+            position = { unit : "special teams", name : "Punter" };
+            break;
+        case "MLB":
+            position = { unit : "defense", name : "Middle Linebacker" };
+            break;
+        case "NT":
+            position = { unit : "defense", name : "Nose Tackle" };
+            break;
+        case "ILB":
+            position = { unit : "defense", name : "Inside Linebacker" };
+            break;
+        case "OL":
+            position = { unit : "offense", name : "Offensive Line" };
+            break;
+        case "SAF":
+            position = { unit : "defense", name : "Safety" };
+            break;
+    }
+    return position;
 }

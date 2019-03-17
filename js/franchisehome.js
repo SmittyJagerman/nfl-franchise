@@ -1,6 +1,8 @@
 var abbr = "";
 var myRoster = [];
 var now = {time:"", year:0};
+var rostersComplete = false;
+var progressComplete = false;
 $(document).ready(function(){
     $('#loaderModal').modal('show');
     abbr = getTeamArg();
@@ -9,7 +11,6 @@ $(document).ready(function(){
     getMyRoster();
     getMyProgress();
     setDisplay();
-    $('#loaderModal').modal('hide');
 });
 function getTeamArg(){
     var teamArg = window.location.search.replace("?", '');
@@ -66,7 +67,9 @@ function getMyRoster(){
         url: "../php/getRoster.php",
         data: {"abbr" : abbr},
         success: function(roster){
-            myRoster = roster;
+            myRoster = JSON.parse(roster);
+            $('#loaderModal').modal('hide');
+            rostersComplete = true;
         }
     });
 }
@@ -80,11 +83,29 @@ function getMyProgress(){
             now.year = season.year;
             $('#league_time').text(now.time);
             $('#league_year').text(now.year);
+            progressComplete = true;
         }
     });
 }
-
 function setDisplay(){
     $('#team-name').text(getTeamFullName(abbr));
     $('#team-logo').attr("src", "../media/team-logos/" + abbr + ".png");
+    var positions = [];
+    positionAbbr.forEach(function(pos){
+        positions.push(getPositionName(pos));
+    });
+    positions.sort(function(a, b){
+        return (a.unit < b.unit) ? -1 : 0;
+    });
+    positions.forEach(function(pos){
+        $('#position-roster-selection').append($('<option value="' + pos + '">' + pos.name + '</option>'));
+    });
 }
+
+$('#position-roster-selection').change(function(){
+    myRoster.forEach(function(player){
+        if(player.Position === $('#position-roster-selection').val()){
+            $('#players-listing').append('<tr><td>' + player.Name + '</td><td>' + player.Position + '</td><td>' + player.Status + '</td><td>' + player.Height + '</td><td>' + player.Weight + '</td><td>' + player.DOB + '</td><td>' + player.Experience + '</td><td>' + player.College + '</td><td><a href="http://www.nfl.com"' + player.ProfileUrl + '>View Profile</a></td></tr>')
+        }
+    });
+});
