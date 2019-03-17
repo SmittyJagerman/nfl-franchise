@@ -1,4 +1,4 @@
-var coach = {name:""};
+var coach = {name:"", url:""};
 var abbr;
 
 $(document).ready(function(){
@@ -39,9 +39,10 @@ function getHeadCoachImage(teamWebsiteLink){
             var coachImageContainer = coachDoc.find('figure.d3-o-media-object__figure');
             var coachImageUrl = ((coachImageContainer[0].children[0]).children[3]).attributes["src"].value.toString().replace("/t_lazy", "");
             $('#selected-team-head-coach-picture').attr("src", coachImageUrl);
-            var coachName = coachDoc.find('.d3-o-media-object__title')[0].innerText.toString().replace('"', "");
+            var coachName = coachDoc.find('.d3-o-media-object__title')[0].innerText.toString().replace('"', "").trim();
             $('#selected-team-head-coach-name').text(coachName);
             coach.name = coachName;
+            coach.url = coachImageUrl;
         }
     });
 }
@@ -82,4 +83,21 @@ function createMediaResponse(mediaTweets, reactionContainer){
         tweet.find('p.tweet-body').text(thisTweet.response);
         reactionContainer.append(tweet);
     });
+}
+
+$('#keep-head-coach-button').click(function(){
+    advanceSetup(false);
+});
+$('#confirm-coach-fired-button').click(function(){
+    advanceSetup(true);
+});
+
+function advanceSetup(isCoachFired){
+    if(isCoachFired){
+        window.location.href="./pages/rostersetup.html?team=" + abbr + "?coach=fired";
+    } else {
+        sessionStorage.setItem("hc_img_href", coach.url);
+        sessionStorage.setItem("hc_name", coach.name);
+        window.location.href="./pages/rostersetup.html?team=" + abbr;
+    }
 }

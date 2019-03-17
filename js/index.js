@@ -10,5 +10,5 @@ $(document).ready(function(){
 
 $('#start-franchise-button').click(function(){
     var abbr = $('#team-select-box').val();
-    window.location.href = '/pages/franchisesetup.html?team=' + abbr;
+    window.location.href = '/pages/coachsetup.html?team=' + abbr;
 });
