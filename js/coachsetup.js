@@ -2,6 +2,7 @@ var coach = {name:"", url:""};
 var abbr;
 
 $(document).ready(function(){
+    $('#loaderModal').modal('show');
     abbr = getTeamArg();
     $('#welcome-to-team-header').text("Welcome to the " + getTeamFullName(abbr));
     $('#selected-team-logo').attr("src", "../media/team-logos/" + abbr + ".png");
@@ -30,6 +31,10 @@ function parseTeamProfile(abbr, results){
 
 function getHeadCoachImage(teamWebsiteLink){
     var coachRoster = teamWebsiteLink + "team/coaches-roster/";
+    if(abbr === "CHI"){
+        //Thanks chicago :(
+        coachRoster = teamWebsiteLink + "team/coaches";
+    }
     $.ajax({
         type : "GET",
         url : "../php/getNflData.php",
@@ -43,6 +48,7 @@ function getHeadCoachImage(teamWebsiteLink){
             $('#selected-team-head-coach-name').text(coachName);
             coach.name = coachName;
             coach.url = coachImageUrl;
+            $('#loaderModal').modal('hide');
         }
     });
 }
@@ -94,10 +100,10 @@ $('#confirm-coach-fired-button').click(function(){
 
 function advanceSetup(isCoachFired){
     if(isCoachFired){
-        window.location.href="./pages/rostersetup.html?team=" + abbr + "?coach=fired";
+        window.location.href="/rostersetup.html?team=" + abbr + "?coach=fired";
     } else {
         sessionStorage.setItem("hc_img_href", coach.url);
         sessionStorage.setItem("hc_name", coach.name);
-        window.location.href="./pages/rostersetup.html?team=" + abbr;
+        window.location.href="./rostersetup.html?team=" + abbr;
     }
 }
